@@ -1,0 +1,118 @@
+*{
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    border: border-box;
+ }
+  
+ .profile{
+   height: 80px;
+   width: 100%;
+   background-color:#8C9491;
+   border-bottom: 4px solid black; 
+}
+
+  h1{
+  color: rgba(27, 2, 68, 0.774);
+  text-align: center;
+  padding-top: 25px;
+  font-style: oblique;
+  text-shadow: 5px;
+  text-decoration: underline;
+}
+
+ .leftbio{
+   width: 35%;
+   height: 55rem;
+   background-color:#FFF0DF ;
+ }
+
+ .name{
+   font-weight: bold;
+   font-family: Verdana;
+   text-transform: uppercase;
+   text-shadow: 5px;
+   padding-top: 4%;
+   color: #9a0fa7;
+   padding-left: 40%;
+   font-style: italic;
+   text-decoration: underline;
+ }
+
+ p{
+   font-family: 'Times New Roman', serif;
+   text-shadow: 5px;
+   padding-top: 2%;
+   color: rgb(0, 0, 0);
+   padding-left: 35%;
+   font-style: italic;
+   
+ 
+ }
+
+  .contact{
+     margin-left: 35%;
+   }
+
+ #box{
+   display:flex;
+ }
+   img{
+    height: 150px;
+    padding-left: 42%;
+    margin-top: 120px;
+    
+   }
+
+ .rightbio{
+   width: 65%;
+   height: 55rem;
+   background-color: #f8f6fcf3;
+   padding-left: 30px;
+ }
+
+  table{
+    width: 80%;
+    border-collapse: collapse;
+    border: 2px solid black;
+}
+
+th, td {
+  border: 1px solid black;
+  padding: 8px;
+  text-align: center;
+
+}
+
+ th{
+  color: #550343f3;
+  font-weight: bold;
+  font-family: Verdana;
+  border: 2px solid black;
+ }
+
+ tr:nth-child(odd){
+  background-color: #f2f2f2;
+ }
+  
+ h3{
+  text-decoration: underline;
+  color: #33058ff3;
+    margin-top: 10px;
+}
+
+  h4{
+    text-decoration: underline;
+    color: darkslategray;
+    margin-top: 5%;
+    font-weight: bold;
+    font-size: larger; 
+}
+
+   ul{
+    margin-top: 20px;
+}
+
+.data{
+  color: #094d33;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
