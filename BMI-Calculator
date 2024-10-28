@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator and BMI Calculator</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playwrite+IS:wght@100..400&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: cursive;
+        }
+
+        body {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(45deg, #0a0a0a, #3a4452);
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            width: 80%; /* Adjust the width as necessary */
+        }
+
+        .Calculator {
+            border: 1px solid #717377;
+            padding: 20px;
+            border-radius: 16px;
+            background: transparent;
+            box-shadow: 0px 3px 15px rgba(113, 115, 119, 0.5);
+            margin-right: 25px; /* Space between the two calculators */
+        }
+
+        input {
+            width: 320px;
+            border: none;
+            padding: 24px;
+            margin: 10px;
+            background: transparent;
+            box-shadow: 0px 3px 15px rgba(84, 84, 84, 0.1);
+            font-size: 40px;
+            text-align: right;
+            cursor: pointer;
+            color: #ffffff;
+        }
+
+        input::placeholder {
+            color: #ffffff;
+        }
+
+        button {
+            border: none;
+            width: 60px;
+            height: 60px;
+            margin: 10px;
+            border-radius: 50%;
+            background: transparent;
+            color: #ffffff;
+            font-size: 20px;
+            box-shadow: -8px -8px 15px rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+        }
+
+        .equalBtn {
+            background-color: #fb7c14;
+        }
+
+        .operater {
+            color: #6dee0a;
+        }
+
+        .bmi-container {
+            margin-top: 20px;
+            color: white;
+            /* border: 1px solid white; */
+            margin: 10px;
+            border-radius: 7px;
+            width: 40%;
+            padding: 20px;
+            box-shadow: 9px 8px 15px rgba(255, 255, 255, 0.1) ,  -8px -8px 15px rgba(255, 255, 255, 0.1) ;
+
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+            /* width: 300px; Fixed width for BMI calculator */
+        }
+
+        .bmi-container h2 {
+            margin-bottom: 10px;
+        }
+
+        .bmi-container input {
+            width: 90%; /* Full width of the container */
+            margin-right: 10px;
+            /* border: 1px solid white; */
+            border-radius: 7px;
+            box-shadow: 10px 10px 25px rgba(255, 255, 255, 0.1) ,  -10px -10px 25px rgba(255, 255, 255, 0.1) ;
+
+            display: flex;
+            justify-content: center;
+            box-shadow: -8px -8px 15px rgba(255, 255, 255, 0.1);
+
+            align-items: center;
+        }
+        .bmi-container input::placeholder{
+            font-size: 1.8rem;
+        }
+        .bmi-container button:hover{
+            background-color: #fb7c14;
+            color: #ffffff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="Calculator">
+            <input type="text" placeholder="0" id="inputBox">
+            <div>
+                <button class="operater">AC</button>
+                <button class="operater">DEL</button>
+                <button class="operater">%</button>
+                <button class="operater">/</button>
+            </div>
+            <div>
+                <button>7</button>
+                <button>8</button>
+                <button>9</button>
+                <button class="operater">*</button>
+            </div>
+            <div>
+                <button>4</button>
+                <button>5</button>
+                <button>6</button>
+                <button class="operater">-</button>
+            </div>
+            <div>
+                <button>1</button>
+                <button>2</button>
+                <button>3</button>
+                <button class="operater">+</button>
+            </div>
+            <div>
+                <button>00</button>
+                <button>0</button>
+                <button>.</button>
+                <button class="equalBtn">=</button>
+            </div>
+        </div>
+
+        <!-- BMI Calculator Section -->
+        <div class="bmi-container">
+            <h2>BMI Calculator</h2>
+            <input type="number" id="weight" placeholder="Enter weight (kg)">
+            <input type="number" id="height" placeholder="Enter height (cm)">
+            <button onclick="calculateBMI()">BMI</button>
+            <p id="bmi-result"></p>
+        </div>
+    </div>
+
+<script>
+    let input = document.getElementById("inputBox");
+    let buttons = document.querySelectorAll("button");
+    let bmiButton = document.querySelector(".bmi-container button");
+
+    let string = '';
+    let arr = Array.from(buttons);
+
+    arr.forEach((button) => {
+        button.addEventListener("click", (e) => {
+            // Clear calculator input when BMI button is clicked
+            if (e.target.innerHTML === "BMI") {
+                string = ''; // Clear string
+                input.value = string;
+                return; // Prevent further actions
+            }
+
+            if (e.target.innerHTML == "=") {
+                try {
+                    string = eval(string);
+                    input.value = string;
+                } catch (error) {
+                    input.value = "Error"; // Handle invalid expressions
+                    string = ''; // Reset string
+                }
+            } else if (e.target.innerHTML == "AC") {
+                string = ''; // Clear string
+                input.value = string;
+            } else if (e.target.innerHTML == "DEL") {
+                string = string.slice(0, -1); // Remove last character
+                input.value = string;
+            } else {
+                string += e.target.innerHTML; // Append clicked button value
+                input.value = string;
+            }
+        });
+    });
+
+    // BMI Calculation
+    function calculateBMI() {
+        let weight = document.getElementById('weight').value;
+        let height = document.getElementById('height').value;
+
+        // Check if both weight and height are entered
+        if (weight === '' || height === '') {
+            document.getElementById('bmi-result').innerHTML = "Please enter both weight and height.";
+            return;
+        }
+
+        // Validate positive values
+        if (weight <= 0 || height <= 0) {
+            document.getElementById('bmi-result').innerHTML = "Please enter valid positive numbers.";
+            return;
+        }
+
+        // Convert height to meters
+        height = height / 100;
+
+        // Calculate BMI
+        let bmi = (weight / (height * height)).toFixed(2);
+
+        // Determine BMI category
+        let category = '';
+        if (bmi < 18.5) {
+            category = 'Underweight';
+        } else if (bmi >= 18.5 && bmi < 24.9) {
+            category = 'Normal weight';
+        } else if (bmi >= 25 && bmi < 29.9) {
+            category = 'Overweight';
+        } else {
+            category = 'Obesity';
+        }
+
+        // Display the result dynamically
+        document.getElementById('bmi-result').innerHTML = `Your BMI is ${bmi} (${category}).`;
+    }
+</script>
+
+</body>
+
+</html>
